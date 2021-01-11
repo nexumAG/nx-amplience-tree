@@ -1,4 +1,4 @@
-# dc-extension-tree
+# nx-amplience-tree (forked from dc-extension-tree)
 
 > Tree field component for use in [Amplience Dynamic Content](https://amplience.com/dynamic-content)
 
@@ -12,85 +12,91 @@ This extension can be used to edit a hierarchy of nodes. Each node in the tree h
 
 ```json
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "...",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "...",
 
-    "title": "Menu",
-    "description": "",
+  "title": "Menu",
+  "description": "",
 
-    "allOf": [{
-        "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/content"
-    }],
-
-    "type": "object",
-    "properties": {
-        "menu": {
-            "type": "array",
-            "title": "Menu",
-
-            "ui:extension": {
-                "url": "https://techiedarren.github.io/dc-extension-tree/"
-            },
-
-            "items": {
-                "oneOf": [{
-                    "$ref": "#/definitions/menu"
-                }]
-            }
-        }
-    },
-    "propertyOrder": [],
-
-    "definitions": {
-        "menu": {
-            "type": "object",
-            "title": "Menu",
-            "labelField": "label",
-            "properties": {
-                "type": {
-                    "const": "menu"
-                },
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "label": {
-                            "type": "string",
-                            "title": "Label",
-                            "description": "Menu label"
-                        }
-                    }
-                },
-                "children": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [{
-                            "$ref": "#/definitions/menuItem"
-                        }]
-                    }
-                }
-            }
-        },
-        "menuItem": {
-            "type": "object",
-            "title": "Menu Item",
-            "labelField": "label",
-            "properties": {
-                "type": {
-                    "const": "menu-item"
-                },
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "label": {
-                            "type": "string",
-                            "title": "Label",
-                            "description": "Menu label"
-                        }
-                    }
-                }
-            }
-        }
+  "allOf": [
+    {
+      "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/content"
     }
+  ],
+
+  "type": "object",
+  "properties": {
+    "menu": {
+      "type": "array",
+      "title": "Menu",
+
+      "ui:extension": {
+        "url": "https://techiedarren.github.io/dc-extension-tree/"
+      },
+
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/menu"
+          }
+        ]
+      }
+    }
+  },
+  "propertyOrder": [],
+
+  "definitions": {
+    "menu": {
+      "type": "object",
+      "title": "Menu",
+      "labelField": "label",
+      "properties": {
+        "type": {
+          "const": "menu"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "title": "Label",
+              "description": "Menu label"
+            }
+          }
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/menuItem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "menuItem": {
+      "type": "object",
+      "title": "Menu Item",
+      "labelField": "label",
+      "properties": {
+        "type": {
+          "const": "menu-item"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "title": "Label",
+              "description": "Menu label"
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -104,22 +110,22 @@ Example:
 
 ```json
 {
-    "type": "object",
-    "labelField": "label",
-    "properties": {
-        "type": {
-            "const": "menu"
-        },
-        "data": {
-            "type": "object",
-            "properties": {
-                "label": {
-                    "type": "string",
-                    "title": "Label",
-                    "description": "Menu label"
-                }
-            }
+  "type": "object",
+  "labelField": "label",
+  "properties": {
+    "type": {
+      "const": "menu"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Label",
+          "description": "Menu label"
         }
+      }
+    }
   }
 }
 ```
@@ -132,12 +138,12 @@ Example:
 
 ```json
 {
-    "ui:extension": {
-        "url": "...",
-        "params": {
-            "pointer": "/menu"
-        }
+  "ui:extension": {
+    "url": "...",
+    "params": {
+      "pointer": "/menu"
     }
+  }
 }
 ```
 
@@ -147,39 +153,39 @@ If your schema includes content link fields, the extension will show a default i
 
 ```json
 {
-    "ui:extension": {
-        "url": "...",
-        "params": {
-            "contentTypes": {
-                "cards": {
-                    "<content-type-id>": "https://myapp.com/preview/card?vse={{vse.domain}}&content={{content.sys.id}}"
-                },
-                "icons": {
-                    "<content-type-id>": "https://myapp.com/icons/icon-banner.png"
-                }
-            }
+  "ui:extension": {
+    "url": "...",
+    "params": {
+      "contentTypes": {
+        "cards": {
+          "<content-type-id>": "https://myapp.com/preview/card?vse={{vse.domain}}&content={{content.sys.id}}"
+        },
+        "icons": {
+          "<content-type-id>": "https://myapp.com/icons/icon-banner.png"
         }
+      }
     }
+  }
 }
 ```
 
-You can also use a wildcard “*” to use the same card or icon for every content type:
+You can also use a wildcard “\*” to use the same card or icon for every content type:
 
 ```json
 {
-    "ui:extension": {
-        "url": "...",
-        "params": {
-            "contentTypes": {
-                "cards": {
-                    "*": "https://myapp.com/preview/card?vse={{vse.domain}}&content={{content.sys.id}}"
-                },
-                "icons": {
-                    "*": "https://myapp.com/icons/icon-banner.png"
-                }
-            }
+  "ui:extension": {
+    "url": "...",
+    "params": {
+      "contentTypes": {
+        "cards": {
+          "*": "https://myapp.com/preview/card?vse={{vse.domain}}&content={{content.sys.id}}"
+        },
+        "icons": {
+          "*": "https://myapp.com/icons/icon-banner.png"
         }
+      }
     }
+  }
 }
 ```
 
